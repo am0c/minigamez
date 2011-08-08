@@ -42,7 +42,7 @@ void game_start()
         event.events = POLLIN;
         event.revents = 0;
         
-        nr = poll(&event, 1, 500);
+        nr = poll(&event, 1, 1500);
         if (nr <= 0)
             continue;
 
