@@ -68,6 +68,8 @@ void game_start()
                 break;
             game_input(input);
             board_print();
+        } else {
+            move_ttr(0, -1);
         }
     }
 
