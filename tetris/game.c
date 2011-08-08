@@ -26,7 +26,23 @@ int restore_canonical()
 static
 int game_input(const unsigned char ch)
 {
-
+    switch (ch) {
+    case 'h':
+        move_ttr(-1, 0);
+        break;
+    case 'j':
+        move_ttr(0, -1);
+        break;
+    case 'k':
+        rotate_ttr(1);
+        break;
+    case 'l':
+        move_ttr(1, 0);
+        break;
+    case ' ':
+        move_ttr(0, -BRD_HEIGHT);
+        break;
+    }
 }
 
 void game_start()
@@ -36,6 +52,7 @@ void game_start()
 
     tcgetattr(STDIN_FILENO, &original_termios);
     disable_canonical();
+    board_init();
     
     for (;;) {
         event.fd = STDIN_FILENO;
@@ -50,7 +67,7 @@ void game_start()
             if ((input = getchar()) == EOF)
                 break;
             game_input(input);
-            print_board();
+            board_print();
         }
     }
 
