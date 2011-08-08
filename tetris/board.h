@@ -26,6 +26,8 @@ struct board {
 void board_init();
 void board_clr();
 
-
+struct tetromino *board_queue(ttr_type type);
+struct tetromino *board_queue_rnd(void);
+struct tetromino *board_dequeue(void);
 
 #endif  /* TETRIS_BOARD_H */

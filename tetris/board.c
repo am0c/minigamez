@@ -17,3 +17,22 @@ void board_clr()
             __brd.type = blk_empty;
 }
 
+struct tetromino *board_queue(ttr_type type)
+{
+    return &__brd.container[__brd.queue[0] = type];
+}
+
+struct tetromino *board_queue_rnd()
+{
+    return board_queue(rand() % TTRt_CNT);
+}
+
+struct tetromino *board_dequeue()
+{
+    struct tetromino *pop = &__brd.onboard[type];
+
+    clone_ttr(__brd.container, pop, __brd.queue[0]);
+    board_queue_rnd();
+
+    return pop;
+}
