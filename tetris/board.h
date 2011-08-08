@@ -16,12 +16,14 @@ struct block {
 
 struct board {
     int level;
+    int container_init;
     struct block board_tbl[BRD_HEIGHT][BRD_HEIGHT];
     struct tetromino queue[BRD_QUEUE_SIZE];
     ttr_container container;
     ttr_container onboard;
 };
 
+void board_init();
 void board_clr();
 
 
