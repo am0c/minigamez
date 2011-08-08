@@ -108,15 +108,11 @@ char *tetromino_res[7][4] = {
 
 int init_ttr_container(ttr_container ttr_ct)
 {
-    static int is_init = 0;
     struct tetromino *t;
     int rotation, rcnt;
     int type, i;
     char *str;
     
-    if (is_init)
-        return 0;
-
     for (type = 0; type < TTRt_CNT; type++) {
         t = ttr_ct[type];
         t.x = 4;
@@ -137,8 +133,8 @@ int init_ttr_container(ttr_container ttr_ct)
             }
         }
     }
-
-    return ++is_init;
+    
+    return 0;
 }
 
 struct tetromino *clone_ttr(ttr_container ttr_ct, struct tetromino *ttr, ttr_type type)
