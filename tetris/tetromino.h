@@ -25,6 +25,8 @@ const ttr_color ttr_color_tbl[] = {
     [TTRt_BLANK] = 0,
 };
 
+typedef struct tetromino ttr_container[TTRt_CNT];
+
 struct tetromino {
     int x;
     int y;
@@ -34,8 +36,8 @@ struct tetromino {
     uint16_t binary[4];
 };
 
-int init_ttr_container(void);
-struct tetromino *init_ttr(int type);
+int init_ttr_container(ttr_container container);
+struct tetromino *clone_ttr(ttr_container container, struct tetromino *to, int type);
 ttr_color ttr_to_color(ttr_type type);
 
 #endif  /* TETRIS_TETROMINO_H */

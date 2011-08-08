@@ -106,10 +106,7 @@ char *tetromino_res[7][4] = {
     },
 };
 
-static struct tetromino ttr_container[TTRt_CNT];
-static struct tetromino ttr_onboard[TTRt_CNT];
-
-int init_ttr_container()
+int init_ttr_container(ttr_container ttr_ct)
 {
     static int is_init = 0;
     struct tetromino *t;
@@ -121,7 +118,7 @@ int init_ttr_container()
         return 0;
 
     for (type = 0; type < TTRt_CNT; type++) {
-        t = ttr_container[type];
+        t = ttr_ct[type];
         t.x = 4;
         t.y = 20;
         t.rotation = 0;
@@ -144,13 +141,10 @@ int init_ttr_container()
     return ++is_init;
 }
 
-struct tetromino *init_ttr(ttr_type type)
+struct tetromino *clone_ttr(ttr_container ttr_ct, struct tetromino *ttr, ttr_type type)
 {
-    struct tetromino *ttr = &ttr_onboard[type];
-    
-    init_ttr_container();
-    *ttr = ttr_container[type];
-    
+    init_ttr_container(ttr_ct);
+    *ttr = ttr_ct[type];
     return ttr;
 }
 

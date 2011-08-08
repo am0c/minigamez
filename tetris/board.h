@@ -14,7 +14,16 @@ struct block {
     int color;
 };
 
-struct block board_tbl[BRD_HEIGHT][BRD_HEIGHT];
-struct tetromino queue[BRD_QUEUE_SIZE];
+struct board {
+    int level;
+    struct block board_tbl[BRD_HEIGHT][BRD_HEIGHT];
+    struct tetromino queue[BRD_QUEUE_SIZE];
+    ttr_container container;
+    ttr_container onboard;
+};
+
+void board_clr();
+
+
 
 #endif  /* TETRIS_BOARD_H */
