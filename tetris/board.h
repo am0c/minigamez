@@ -16,6 +16,13 @@
 #define BRDp_CLRD 0x0002
 #define BRDp_NOOP 0x0004
 
+#ifdef TETRIS_BOARD_STAT
+# define Bstat (TETRIS_BOARD_STAT)
+# define BSset(flag)  Bstat |= (flag)
+# define BSclr(flag)  Bstat &= ~(flag)
+# define BSget(flag)  (Bstat & (flag))
+#endif
+
 #define BRDs_container_init 0x00010000
 
 struct block {

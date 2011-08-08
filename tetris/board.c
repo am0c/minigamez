@@ -1,12 +1,15 @@
-#include "board.h"
 #include "tetromino.h"
+
+#define TETRIS_BOARD_STAT __brd.state
+#include "board.h"
 
 static struct board __brd;
 
 void board_init()
 {
-    if (!__brd.container_init)
-        __brd.container_init = init_ttr_container(__brd.container);
+    __brd.level = 0;
+    if (init_ttr_container(__brd.container))
+        BSset(BRDs_container_init);
     board_clr();
     board_queue_rnd();
 }
