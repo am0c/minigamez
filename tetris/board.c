@@ -5,8 +5,10 @@ static struct board __brd;
 
 void board_init()
 {
-    init_ttr_container(__brd.container);
+    if (!__brd.container_init)
+        __brd.container_init = init_ttr_container(__brd.container);
     board_clr();
+    board_queue_rnd();
 }
 
 void board_clr()

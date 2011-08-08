@@ -134,7 +134,7 @@ int init_ttr_container(ttr_container ttr_ct)
         }
     }
     
-    return 0;
+    return 1;
 }
 
 struct tetromino *clone_ttr(ttr_container ttr_ct, struct tetromino *ttr, ttr_type type)
