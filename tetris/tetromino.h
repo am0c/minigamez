@@ -1,9 +1,9 @@
 #ifndef TETRIS_TETROMINO_H
 #define TETRIS_TETROMINO_H
+#include <stdint.h>
 
 typedef enum {
     TTRt_I = 0,
-    TTRt_I,
     TTRt_J,
     TTRt_L,
     TTRt_O,
