@@ -13,17 +13,29 @@ typedef enum {
     TTRt_CNT,
 } ttr_type;
 
+typedef int ttr_color;
+const ttr_color ttr_color_tbl[] = {
+    [TTRt_I] = 0,
+    [TTRt_J] = 0,
+    [TTRt_L] = 0,
+    [TTRt_O] = 0,
+    [TTRt_S] = 0,
+    [TTRt_T] = 0,
+    [TTRt_Z] = 0,
+    [TTRt_BLANK] = 0,
+};
+
 struct tetromino {
     int x;
     int y;
     int rotation;
-    int color;
+    ttr_color color;
     ttr_type type;
     uint16_t binary[4];
 };
 
 int init_ttr_container(void);
 struct tetromino *init_ttr(int type);
-int ttr_to_color(ttr_type type);
+ttr_color ttr_to_color(ttr_type type);
 
 #endif  /* TETRIS_TETROMINO_H */

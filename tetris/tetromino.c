@@ -106,18 +106,6 @@ char *tetromino_res[7][4] = {
     },
 };
 
-static const
-int color_res[] = {
-    0, /* TTRc_I */
-    0, /* TTRc_J */
-    0, /* TTRc_L */
-    0, /* TTRc_O */
-    0, /* TTRc_S */
-    0, /* TTRc_T */
-    0, /* TTRc_Z */
-    0, /* TTRc_BLANK */
-};
-
 static struct tetromino ttr_container[TTRt_CNT];
 static struct tetromino ttr_onboard[TTRt_CNT];
 
@@ -166,7 +154,10 @@ struct tetromino *init_ttr(ttr_type type)
     return ttr;
 }
 
-int ttr_to_color(ttr_type type)
+ttr_color ttr_to_color(ttr_type type)
 {
-    return color_res[type];
+    if (type <= TTRt_CNT)
+        return ttr_color[type];
+    else
+        return 0;
 }
