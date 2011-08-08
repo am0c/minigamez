@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <termios.h>
+#include <unistd.h>
 #include <poll.h>
 #include "board.h"
 #include "game.h"
@@ -11,14 +12,14 @@ int disable_canonical()
 {
     struct termios t;
     t.c_lflag &= ~( ICANON | ECHO );
-    tcsetattr(STDIN_FILENO, &t);
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &t);
     return 0;
 }
 
 static
 int restore_canonical()
 {
-    tcsetattr(STDIN_FILENO, &original_termios);
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &original_termios);
     return 0;
 }
 
@@ -37,11 +38,11 @@ void game_start()
     disable_canonical();
     
     for (;;) {
-        event.fd = stdin;
+        event.fd = STDIN_FILENO;
         event.events = POLLIN;
         event.revents = 0;
         
-        nr = poll(event, 1, 500);
+        nr = poll(&event, 1, 500);
         if (nr <= 0)
             continue;
 
