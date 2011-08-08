@@ -10,6 +10,7 @@ void board_init()
     __brd.level = 0;
     if (init_ttr_container(__brd.container))
         BSset(BRDs_container_init);
+    BSset(BRDf_PLAY | BRDp_FALL);
     board_clr();
     board_queue_rnd();
 }
